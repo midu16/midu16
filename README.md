@@ -1,5 +1,5 @@
 <h1 align="center">Hi there👋, I'm Mihai I.</h1>
-<h3 align="center">I like to solve bugs. Keen to find a challenging and suitable engineering position with an ambitious company that offers opportunities for career development.</h3>
+<h3 align="center">I am passionate about troubleshooting, software development, and solution architecture, with a strong focus on solving complex technical challenges. I am seeking a challenging engineering position within an ambitious organization that offers opportunities for professional growth and career advancement.</h3>
 
 - 👨‍ I'm working as a Senior Software Engineer at @Red Hat 
 

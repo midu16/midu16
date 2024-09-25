@@ -1,7 +1,7 @@
 <h1 align="center">Hi there👋, I'm Mihai I.</h1>
 <h3 align="center">I am passionate about troubleshooting, software development, and solution architecture, with a strong focus on solving complex technical challenges. I am seeking a challenging engineering position within an ambitious organization that offers opportunities for professional growth and career advancement.</h3>
 
-- 👨‍ I'm working as a Senior Software Engineer at @Red Hat 
+- 👨‍ I'm working as a Software Engineer at @Red Hat for the last 3 years (2021 - present). My past experience was graviting on the same domain of software development and telecommunications in the RAN and Core space. 
 
 - 👨‍💻 All of my projects are available at [https://github.com/midu16](https://github.com/midu16)
 

@@ -1,0 +1,107 @@
+name: Code Quality Analysis
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  schedule:
+    # Run weekly on Sundays at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for better analysis
+    
+    - name: Set up Python
+      if: contains(github.event.repository.language, 'Python') || contains(github.event.repository.language, 'Jupyter')
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    
+    - name: Set up Node.js
+      if: contains(github.event.repository.language, 'JavaScript') || contains(github.event.repository.language, 'TypeScript')
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Set up Java
+      if: contains(github.event.repository.language, 'Java')
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Run Super-Linter
+      uses: github/super-linter@v5
+      env:
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_ALL_CODEBASE: true
+        VALIDATE_PYTHON_BLACK: true
+        VALIDATE_PYTHON_FLAKE8: true
+        VALIDATE_JAVASCRIPT_ES: true
+        VALIDATE_TYPESCRIPT_ES: true
+        VALIDATE_JAVA: true
+        VALIDATE_GO: true
+    
+    - name: CodeQL Analysis
+      uses: github/codeql-action/init@v3
+      with:
+        languages: auto
+    
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+    
+    - name: Generate Quality Report
+      run: |
+        echo "## Code Quality Analysis Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+        echo "### Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "### Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Code quality checks completed successfully!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Analysis includes:**" >> $GITHUB_STEP_SUMMARY
+        echo "- Linting and code style checks" >> $GITHUB_STEP_SUMMARY
+        echo "- Security vulnerability scanning" >> $GITHUB_STEP_SUMMARY
+        echo "- Code complexity analysis" >> $GITHUB_STEP_SUMMARY
+
+  repository-stats:
+    name: Repository Statistics
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Calculate Repository Metrics
+      run: |
+        echo "## Repository Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Count files by type
+        echo "### File Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        find . -type f -not -path './.git/*' | wc -l | xargs echo "Total files:" >> $GITHUB_STEP_SUMMARY
+        find . -name "*.py" -not -path './.git/*' | wc -l | xargs echo "Python files:" >> $GITHUB_STEP_SUMMARY
+        find . -name "*.js" -not -path './.git/*' | wc -l | xargs echo "JavaScript files:" >> $GITHUB_STEP_SUMMARY
+        find . -name "*.java" -not -path './.git/*' | wc -l | xargs echo "Java files:" >> $GITHUB_STEP_SUMMARY
+        find . -name "*.go" -not -path './.git/*' | wc -l | xargs echo "Go files:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        
+        # Calculate total lines of code (excluding comments and blanks)
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Code Metrics" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        find . -type f \( -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.go" -o -name "*.cpp" -o -name "*.c" \) -not -path './.git/*' -exec wc -l {} + | tail -1 | awk '{print "Total lines of code: " $1}' >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

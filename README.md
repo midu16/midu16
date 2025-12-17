@@ -50,14 +50,6 @@ I am passionate about troubleshooting, software development, and solution archit
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs?username=midu16&show_icons=true&locale=en&layout=compact&theme=github_dark&hide_border=false" alt="midu16" />
 </div>
 
-<div align="center">
-  <img src="https://github-readme-streak-stats.demolab.com/?user=midu16&theme=github_dark&hide_border=false" alt="midu16" />
-</div>
-
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=midu16&theme=github_dark&no-frame=false&no-bg=false&margin-w=4" alt="midu16" />
-</div>
-
 ---
 
 ## 🔍 Code Quality & Repository Analysis
@@ -67,16 +59,16 @@ I am passionate about troubleshooting, software development, and solution archit
   <p>Dynamic analysis based on GitHub repository data</p>
   
   <!-- Repository Health Badges using GitHub API -->
-  <img src="https://img.shields.io/github/stars/midu16?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars" />
+  <img src="https://img.shields.io/github/stars/midu16/midu16?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars" />
   <img src="https://img.shields.io/github/followers/midu16?style=for-the-badge&logo=github&label=Followers" alt="GitHub Followers" />
-  <img src="https://img.shields.io/github/contributors/midu16?style=for-the-badge&logo=github&label=Contributors" alt="Contributors" />
+  <img src="https://img.shields.io/github/contributors/midu16/midu16?style=for-the-badge&logo=github&label=Contributors" alt="Contributors" />
   
   <br/><br/>
   
   <!-- Code Quality Indicators -->
-  <img src="https://img.shields.io/github/last-commit/midu16?style=for-the-badge&logo=git&label=Last%20Commit" alt="Last Commit" />
-  <img src="https://img.shields.io/github/commit-activity/m/midu16?style=for-the-badge&logo=github&label=Commits/Month" alt="Commit Activity" />
-  <img src="https://img.shields.io/github/repo-size/midu16?style=for-the-badge&logo=github&label=Repo%20Size" alt="Repository Size" />
+  <img src="https://img.shields.io/github/last-commit/midu16/midu16?style=for-the-badge&logo=git&label=Last%20Commit" alt="Last Commit" />
+  <img src="https://img.shields.io/github/commit-activity/m/midu16/midu16?style=for-the-badge&logo=github&label=Commits/Month" alt="Commit Activity" />
+  <img src="https://img.shields.io/github/repo-size/midu16/midu16?style=for-the-badge&logo=github&label=Repo%20Size" alt="Repository Size" />
   
 </div>
 
@@ -85,13 +77,76 @@ I am passionate about troubleshooting, software development, and solution archit
 <div align="center">
   <table>
     <tr>
+      <td align="center" colspan="2">
+        <strong>📊 Cross-Repository Code Quality Score</strong><br/>
+        <sub>Analyzed across all public repositories</sub>
+      </td>
+    </tr>
+    <tr>
       <td align="center" width="50%">
-        <strong>📈 Repository Statistics</strong><br/>
-        <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true&hide=issues&custom_title=Code%20Quality%20Metrics" alt="Code Quality Metrics" />
+        <img src="https://img.shields.io/badge/Quality_Score-Pending-lightgrey?style=for-the-badge" alt="Quality Score" /><br/>
+        <img src="https://img.shields.io/badge/Grade-Pending-lightgrey?style=for-the-badge" alt="Grade" />
       </td>
       <td align="center" width="50%">
+        <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true&hide=issues&custom_title=Code%20Metrics" alt="Code Metrics" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div align="center">
+  <table>
+    <tr>
+      <th>📈 Metric</th>
+      <th>📊 Value</th>
+      <th>📝 Description</th>
+    </tr>
+    <tr>
+      <td><strong>Total Repositories</strong></td>
+      <td><img src="https://img.shields.io/badge/Repos-Pending-blue?style=flat-square" /></td>
+      <td>Public repositories analyzed</td>
+    </tr>
+    <tr>
+      <td><strong>Active Repositories</strong></td>
+      <td><img src="https://img.shields.io/badge/Active-Pending-green?style=flat-square" /></td>
+      <td>Updated in last 6 months</td>
+    </tr>
+    <tr>
+      <td><strong>Total Stars</strong></td>
+      <td><img src="https://img.shields.io/badge/Stars-Pending-yellow?style=flat-square" /></td>
+      <td>Community recognition</td>
+    </tr>
+    <tr>
+      <td><strong>Total Forks</strong></td>
+      <td><img src="https://img.shields.io/badge/Forks-Pending-orange?style=flat-square" /></td>
+      <td>Code reuse by others</td>
+    </tr>
+    <tr>
+      <td><strong>Languages Used</strong></td>
+      <td><img src="https://img.shields.io/badge/Languages-Pending-purple?style=flat-square" /></td>
+      <td>Programming language diversity</td>
+    </tr>
+    <tr>
+      <td><strong>Total Size</strong></td>
+      <td><img src="https://img.shields.io/badge/Size-Pending-lightgrey?style=flat-square" /></td>
+      <td>Combined repository size</td>
+    </tr>
+  </table>
+  
+  <br/>
+  <sub>🔄 Last analyzed: Pending | 🤖 Auto-generated by <a href="https://github.com/midu16/midu16/actions/workflows/repo-analysis.yml">GitHub Actions</a></sub>
+</div>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="50%">
         <strong>💻 Language Distribution</strong><br/>
-        <img src="https://github-readme-stats.vercel.app/api/top-langs?username=midu16&langs_count=10&theme=github_dark&layout=compact&hide_border=true&exclude_repo=midu16" alt="Language Distribution" />
+        <img src="https://github-readme-stats.vercel.app/api/top-langs?username=midu16&langs_count=10&theme=github_dark&layout=compact&hide_border=true" alt="Language Distribution" />
+      </td>
+      <td align="center" width="50%">
+        <strong>📈 Contribution Activity</strong><br/>
+        <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&theme=github_dark&hide_border=true&hide=contribs,prs&custom_title=Activity" alt="Activity" />
       </td>
     </tr>
   </table>

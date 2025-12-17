@@ -1,0 +1,115 @@
+name: Validate README Links
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'README.md'
+      - '.github/workflows/validate-links.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'README.md'
+  schedule:
+    # Run weekly on Sundays at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  validate-links:
+    name: Validate HTTPS Endpoints
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract and validate URLs
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "🔍 Extracting HTTPS URLs from README.md..."
+          
+          # Extract all HTTPS URLs from README.md
+          # Matches URLs in src="...", href="...", and markdown links [text](url)
+          urls=$(grep -oP 'https://[^"'\''<>\s\)]+' README.md | sort -u)
+          
+          if [ -z "$urls" ]; then
+            echo "⚠️ No HTTPS URLs found in README.md"
+            exit 0
+          fi
+          
+          echo "📋 Found $(echo "$urls" | wc -l) unique URLs to validate"
+          echo ""
+          
+          failed=0
+          succeeded=0
+          skipped=0
+          failed_urls=""
+          
+          # URLs to skip (known to require special handling)
+          skip_patterns=(
+            "mailto:"
+            "linkedin.com"  # LinkedIn blocks automated requests
+          )
+          
+          for url in $urls; do
+            # Check if URL should be skipped
+            skip=false
+            for pattern in "${skip_patterns[@]}"; do
+              if [[ "$url" == *"$pattern"* ]]; then
+                echo "⏭️  SKIP: $url (requires authentication or blocks bots)"
+                skip=true
+                ((skipped++))
+                break
+              fi
+            done
+            
+            if [ "$skip" = true ]; then
+              continue
+            fi
+            
+            # Make HTTP request with timeout and follow redirects
+            # Use -f to fail on HTTP errors (4xx, 5xx)
+            # Use -s for silent mode, -o /dev/null to discard output
+            # Use -w to get HTTP status code
+            http_code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 30 \
+              -H "User-Agent: Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com)" \
+              "$url" 2>/dev/null || echo "000")
+            
+            if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 400 ]; then
+              echo "✅ OK ($http_code): $url"
+              ((succeeded++))
+            elif [ "$http_code" = "000" ]; then
+              echo "❌ FAIL (timeout/connection error): $url"
+              failed_urls="$failed_urls\n  - $url (connection error)"
+              ((failed++))
+            else
+              echo "❌ FAIL ($http_code): $url"
+              failed_urls="$failed_urls\n  - $url (HTTP $http_code)"
+              ((failed++))
+            fi
+          done
+          
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📊 Validation Summary"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Succeeded: $succeeded"
+          echo "❌ Failed: $failed"
+          echo "⏭️  Skipped: $skipped"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          if [ $failed -gt 0 ]; then
+            echo ""
+            echo "🚨 Failed URLs:"
+            echo -e "$failed_urls"
+            echo ""
+            echo "❌ Workflow failed due to broken links!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "🎉 All links validated successfully!"
+

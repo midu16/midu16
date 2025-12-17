@@ -10,6 +10,11 @@ on:
     - cron: '0 0 * * 0'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
 jobs:
   code-quality:
     name: Code Quality Check
@@ -21,20 +26,43 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history for better analysis
     
+    - name: Detect Languages
+      id: detect-languages
+      run: |
+        LANGUAGES=""
+        if find . -name "*.py" -not -path './.git/*' | head -1 | grep -q .; then
+          LANGUAGES="$LANGUAGES python"
+        fi
+        if find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" -not -path './.git/*' | head -1 | grep -q .; then
+          LANGUAGES="$LANGUAGES javascript"
+        fi
+        if find . -name "*.java" -not -path './.git/*' | head -1 | grep -q .; then
+          LANGUAGES="$LANGUAGES java"
+        fi
+        if find . -name "*.go" -not -path './.git/*' | head -1 | grep -q .; then
+          LANGUAGES="$LANGUAGES go"
+        fi
+        if find . -name "*.cpp" -o -name "*.cxx" -o -name "*.cc" -o -name "*.c" -not -path './.git/*' | head -1 | grep -q .; then
+          LANGUAGES="$LANGUAGES cpp"
+        fi
+        LANGUAGES=$(echo $LANGUAGES | xargs)
+        echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
+        echo "Detected languages: $LANGUAGES"
+    
     - name: Set up Python
-      if: contains(github.event.repository.language, 'Python') || contains(github.event.repository.language, 'Jupyter')
+      if: contains(steps.detect-languages.outputs.languages, 'python')
       uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     
     - name: Set up Node.js
-      if: contains(github.event.repository.language, 'JavaScript') || contains(github.event.repository.language, 'TypeScript')
+      if: contains(steps.detect-languages.outputs.languages, 'javascript')
       uses: actions/setup-node@v4
       with:
         node-version: '20'
     
     - name: Set up Java
-      if: contains(github.event.repository.language, 'Java')
+      if: contains(steps.detect-languages.outputs.languages, 'java')
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
@@ -53,13 +81,15 @@ jobs:
         VALIDATE_JAVA: true
         VALIDATE_GO: true
     
-    - name: CodeQL Analysis
-      uses: github/codeql-action/init@v3
+    - name: Initialize CodeQL
+      if: steps.detect-languages.outputs.languages != ''
+      uses: github/codeql-action/init@v4
       with:
-        languages: auto
+        languages: ${{ steps.detect-languages.outputs.languages }}
     
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      if: steps.detect-languages.outputs.languages != ''
+      uses: github/codeql-action/analyze@v4
     
     - name: Generate Quality Report
       run: |

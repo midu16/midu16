@@ -4,6 +4,21 @@
 
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=midu16&label=Profile%20views&color=0e75b6&style=flat" alt="midu16" />
+  <br/><br/>
+  
+  <!-- 🌍 Visitor Country Tracking
+       To enable country tracking:
+       1. Go to https://flagcounter.com and click "Create a Flag Counter"
+       2. Customize appearance (use bg_color=0D1117 for dark theme)
+       3. Copy the generated code and replace the placeholder below
+       4. Your unique counter ID will replace "VAMY"
+  -->
+  <strong>🌍 Visitors by Country</strong><br/>
+  <a href="https://info.flagcounter.com/VAMY">
+    <img src="https://s01.flagcounter.com/count2/VAMY/bg_0D1117/txt_FFFFFF/border_30363D/columns_4/maxflags_16/viewers_0/labels_1/pageviews_0/flags_0/percent_0/" alt="Visitors by Country" />
+  </a>
+  <br/>
+  <sub>🔧 <em>Configure at <a href="https://flagcounter.com">flagcounter.com</a> to enable country tracking</em></sub>
 </div>
 
 ---

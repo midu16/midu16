@@ -61,7 +61,7 @@ jobs:
               if [[ "$url" == *"$pattern"* ]]; then
                 echo "⏭️  SKIP: $url (requires authentication or blocks bots)"
                 skip=true
-                ((skipped++))
+                skipped=$((skipped + 1))
                 break
               fi
             done
@@ -80,15 +80,15 @@ jobs:
             
             if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 400 ]; then
               echo "✅ OK ($http_code): $url"
-              ((succeeded++))
+              succeeded=$((succeeded + 1))
             elif [ "$http_code" = "000" ]; then
               echo "❌ FAIL (timeout/connection error): $url"
               failed_urls="$failed_urls\n  - $url (connection error)"
-              ((failed++))
+              failed=$((failed + 1))
             else
               echo "❌ FAIL ($http_code): $url"
               failed_urls="$failed_urls\n  - $url (HTTP $http_code)"
-              ((failed++))
+              failed=$((failed + 1))
             fi
           done
           

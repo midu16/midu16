@@ -72,7 +72,7 @@ jobs:
               continue
             fi
             
-            ((total_repos++))
+            total_repos=$((total_repos + 1))
             total_stars=$((total_stars + stars))
             total_forks=$((total_forks + forks))
             total_issues=$((total_issues + issues))
@@ -80,11 +80,11 @@ jobs:
             
             # Count archived vs active
             if [ "$archived" == "true" ]; then
-              ((archived_repos++))
+              archived_repos=$((archived_repos + 1))
             else
               # Check if recently updated
               if [[ "$updated_at" > "$six_months_ago" ]]; then
-                ((active_repos++))
+                active_repos=$((active_repos + 1))
               fi
             fi
             

@@ -231,17 +231,17 @@ jobs:
             <table>
               <tr>
                 <td align="center" colspan="2">
-                  <strong>📊 Cross-Repository Code Quality Score</strong><br/>
-                  <sub>Analyzed across all public repositories</sub>
+                  <strong>Cross-Repository Quality Score</strong><br/>
+                  <sub>Aggregated across all public repositories</sub>
                 </td>
               </tr>
               <tr>
                 <td align="center" width="50%">
-                  <img src="https://img.shields.io/badge/Quality_Score-QUALITY_SCORE%2F100-GRADE_COLOR?style=for-the-badge" alt="Quality Score" /><br/>
-                  <img src="https://img.shields.io/badge/Grade-GRADE-GRADE_COLOR?style=for-the-badge" alt="Grade" />
+                  <img src="https://img.shields.io/badge/Score-QUALITY_SCORE%2F100-FF6B35?style=for-the-badge&labelColor=0D1117" alt="Quality Score" /><br/>
+                  <img src="https://img.shields.io/badge/Grade-GRADE-FF6B35?style=for-the-badge&labelColor=0D1117" alt="Grade" />
                 </td>
                 <td align="center" width="50%">
-                  <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true&hide=issues&custom_title=Code%20Metrics" alt="Code Metrics" />
+                  <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&include_all_commits=true&count_private=true&hide=issues&custom_title=Code%20Metrics&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=true" alt="Code metrics" />
                 </td>
               </tr>
             </table>
@@ -250,60 +250,61 @@ jobs:
           <div align="center">
             <table>
               <tr>
-                <th>📈 Metric</th>
-                <th>📊 Value</th>
-                <th>📝 Description</th>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Insight</th>
               </tr>
               <tr>
                 <td><strong>Total Repositories</strong></td>
-                <td><img src="https://img.shields.io/badge/Repos-TOTAL_REPOS-blue?style=flat-square" /></td>
+                <td><img src="https://img.shields.io/badge/Repos-TOTAL_REPOS-00D4FF?style=flat-square&labelColor=0D1117" alt="TOTAL_REPOS repositories" /></td>
                 <td>Public repositories analyzed</td>
               </tr>
               <tr>
                 <td><strong>Active Repositories</strong></td>
-                <td><img src="https://img.shields.io/badge/Active-ACTIVE_REPOS-green?style=flat-square" /></td>
-                <td>Updated in last 6 months</td>
+                <td><img src="https://img.shields.io/badge/Active-ACTIVE_REPOS-7B61FF?style=flat-square&labelColor=0D1117" alt="ACTIVE_REPOS active repositories" /></td>
+                <td>Updated in the last 6 months</td>
               </tr>
               <tr>
                 <td><strong>Total Stars</strong></td>
-                <td><img src="https://img.shields.io/badge/Stars-TOTAL_STARS-yellow?style=flat-square" /></td>
+                <td><img src="https://img.shields.io/badge/Stars-TOTAL_STARS-C9D1D9?style=flat-square&labelColor=0D1117" alt="TOTAL_STARS stars" /></td>
                 <td>Community recognition</td>
               </tr>
               <tr>
                 <td><strong>Total Forks</strong></td>
-                <td><img src="https://img.shields.io/badge/Forks-TOTAL_FORKS-orange?style=flat-square" /></td>
-                <td>Code reuse by others</td>
+                <td><img src="https://img.shields.io/badge/Forks-TOTAL_FORKS-30363D?style=flat-square&labelColor=0D1117" alt="TOTAL_FORKS forks" /></td>
+                <td>Downstream reuse</td>
               </tr>
               <tr>
                 <td><strong>Languages Used</strong></td>
-                <td><img src="https://img.shields.io/badge/Languages-LANG_COUNT-purple?style=flat-square" /></td>
-                <td>Programming language diversity</td>
+                <td><img src="https://img.shields.io/badge/Languages-LANG_COUNT-00D4FF?style=flat-square&labelColor=0D1117" alt="LANG_COUNT languages" /></td>
+                <td>Technology breadth</td>
               </tr>
               <tr>
                 <td><strong>Total Size</strong></td>
-                <td><img src="https://img.shields.io/badge/Size-TOTAL_SIZE_MB%20MB-lightgrey?style=flat-square" /></td>
-                <td>Combined repository size</td>
+                <td><img src="https://img.shields.io/badge/Size-TOTAL_SIZE_MB%20MB-30363D?style=flat-square&labelColor=0D1117" alt="TOTAL_SIZE_MB MB total size" /></td>
+                <td>Combined repository footprint</td>
               </tr>
             </table>
             
             <br/>
-            <sub>🔄 Last analyzed: LAST_UPDATED | 🤖 Auto-generated by <a href="https://github.com/midu16/midu16/actions/workflows/repo-analysis.yml">GitHub Actions</a></sub>
+            <sub>Last analyzed: LAST_UPDATED · Auto-generated by <a href="https://github.com/midu16/midu16/actions/workflows/repo-analysis.yml">GitHub Actions</a></sub>
           </div>
 
           <div align="center">
             <table>
               <tr>
                 <td align="center" width="50%">
-                  <strong>💻 Language Distribution</strong><br/>
-                  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=midu16&langs_count=10&theme=github_dark&layout=compact&hide_border=true" alt="Language Distribution" />
+                  <strong>Language Distribution</strong><br/>
+                  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=midu16&langs_count=10&layout=compact&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=true" alt="Language distribution" />
                 </td>
                 <td align="center" width="50%">
-                  <strong>📈 Contribution Activity</strong><br/>
-                  <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&theme=github_dark&hide_border=true&hide=contribs,prs&custom_title=Activity" alt="Activity" />
+                  <strong>Contribution Activity</strong><br/>
+                  <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&hide=contribs,prs&custom_title=Activity&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=true" alt="Contribution activity" />
                 </td>
               </tr>
             </table>
           </div>
+
           METRICS_EOF
           )
           

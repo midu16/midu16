@@ -319,13 +319,31 @@
 
 </div>
 
-<!-- ───────────────────────────── HIGHLIGHT ───────────────────────────── -->
+<!-- ───────────────────────────── FEATURED REPOS ───────────────────────────── -->
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0D1117&height=2&section=header&stroke=00D4FF&strokeWidth=1" alt="" />
+
+<h3 align="center">Featured Projects</h3>
+
+<p align="center">
+  <sub>Original repositories I actively maintain. Pin these on your profile if you fork the playbook.</sub>
+</p>
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=midu16&repo=midu16&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=false" alt="Featured repository" />
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=midu16&repo=l1-cp&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=false" alt="l1-cp" />
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=midu16&repo=prega-release-notes&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=false" alt="prega-release-notes" />
+
+<br/>
+
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=midu16&repo=lemonade&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=false" alt="lemonade fork" />
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=midu16&repo=midu16&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=false" alt="Profile README" />
 
 </div>
+
+<p align="center">
+  <sub>Repository quality playbook: <a href="docs/repo-quality-playbook.md">docs/repo-quality-playbook.md</a></sub>
+</p>
 
 <div align="center">
 

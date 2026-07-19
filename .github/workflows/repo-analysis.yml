@@ -2,7 +2,6 @@ name: Repository Code Quality Analysis
 
 on:
   schedule:
-    # Run daily at 06:00 UTC
     - cron: '0 6 * * *'
   workflow_dispatch:
 
@@ -11,234 +10,98 @@ permissions:
 
 jobs:
   analyze-repos:
-    name: Analyze All Repositories
+    name: Analyze GitHub profile repositories
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch and analyze all repositories
+      - name: Analyze public repositories
         id: analyze
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          #!/bin/bash
-          set -e
-          
-          USERNAME="midu16"
-          
-          echo "🔍 Fetching all public repositories for $USERNAME..."
-          
-          # Fetch all public repos using GitHub API
-          repos_json=$(curl -s -H "Authorization: token $GH_TOKEN" \
-            "https://api.github.com/users/$USERNAME/repos?per_page=100&type=public")
-          
-          # Initialize counters
-          total_repos=0
-          total_stars=0
-          total_forks=0
-          total_issues=0
-          total_size=0
-          declare -A lang_count
-          declare -A lang_bytes
-          active_repos=0
-          archived_repos=0
-          
-          # Get current date for activity check (repos updated in last 6 months)
-          six_months_ago=$(date -d '6 months ago' +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -v-6m +%Y-%m-%dT%H:%M:%SZ)
-          
-          echo ""
-          echo "📊 Analyzing repositories..."
-          echo ""
-          
-          # Parse each repository
-          for repo in $(echo "$repos_json" | jq -r '.[] | @base64'); do
-            _jq() {
-              echo "$repo" | base64 --decode | jq -r "${1}"
-            }
-            
-            name=$(_jq '.name')
-            stars=$(_jq '.stargazers_count')
-            forks=$(_jq '.forks_count')
-            issues=$(_jq '.open_issues_count')
-            size=$(_jq '.size')
-            language=$(_jq '.language')
-            archived=$(_jq '.archived')
-            updated_at=$(_jq '.updated_at')
-            
-            # Skip if null or this profile repo
-            if [ "$name" == "null" ]; then
-              continue
-            fi
-            
-            total_repos=$((total_repos + 1))
-            total_stars=$((total_stars + stars))
-            total_forks=$((total_forks + forks))
-            total_issues=$((total_issues + issues))
-            total_size=$((total_size + size))
-            
-            # Count archived vs active
-            if [ "$archived" == "true" ]; then
-              archived_repos=$((archived_repos + 1))
-            else
-              # Check if recently updated
-              if [[ "$updated_at" > "$six_months_ago" ]]; then
-                active_repos=$((active_repos + 1))
-              fi
-            fi
-            
-            # Count languages
-            if [ "$language" != "null" ] && [ -n "$language" ]; then
-              if [ -z "${lang_count[$language]}" ]; then
-                lang_count[$language]=0
-              fi
-              lang_count[$language]=$((${lang_count[$language]} + 1))
-            fi
-            
-            echo "  ✓ $name (⭐ $stars, 🍴 $forks, $language)"
-          done
-          
-          # Calculate averages
-          if [ $total_repos -gt 0 ]; then
-            avg_stars=$(echo "scale=1; $total_stars / $total_repos" | bc)
-            avg_size=$(echo "scale=1; $total_size / $total_repos" | bc)
-          else
-            avg_stars=0
-            avg_size=0
-          fi
-          
-          # Convert size to MB
-          total_size_mb=$(echo "scale=2; $total_size / 1024" | bc)
-          
-          # Sort languages by count and get top 5
-          top_languages=""
-          for lang in "${!lang_count[@]}"; do
-            echo "${lang_count[$lang]} $lang"
-          done | sort -rn | head -5 | while read count lang; do
-            top_languages="$top_languages$lang ($count), "
-          done
-          
-          # Generate language breakdown for output
-          lang_breakdown=""
-          for lang in "${!lang_count[@]}"; do
-            if [ -n "$lang_breakdown" ]; then
-              lang_breakdown="$lang_breakdown, "
-            fi
-            lang_breakdown="$lang_breakdown$lang: ${lang_count[$lang]}"
-          done
-          
-          echo ""
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📊 ANALYSIS SUMMARY"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "Total Repositories: $total_repos"
-          echo "Active Repos (updated in 6 months): $active_repos"
-          echo "Archived Repos: $archived_repos"
-          echo "Total Stars: $total_stars"
-          echo "Total Forks: $total_forks"
-          echo "Open Issues: $total_issues"
-          echo "Total Size: ${total_size_mb} MB"
-          echo "Languages: $lang_breakdown"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          
-          # Calculate code quality score (0-100)
-          # Based on: activity, stars, diversity, maintenance
-          activity_score=$((active_repos * 100 / (total_repos > 0 ? total_repos : 1)))
-          star_score=$((total_stars > 50 ? 100 : total_stars * 2))
-          lang_diversity=$((${#lang_count[@]} > 5 ? 100 : ${#lang_count[@]} * 20))
-          maintenance_score=$((total_issues < 10 ? 100 : (100 - total_issues)))
-          maintenance_score=$((maintenance_score < 0 ? 0 : maintenance_score))
-          
-          quality_score=$(( (activity_score + star_score + lang_diversity + maintenance_score) / 4 ))
-          
-          # Determine grade
-          if [ $quality_score -ge 90 ]; then
-            grade="A+"
-            grade_color="brightgreen"
-          elif [ $quality_score -ge 80 ]; then
-            grade="A"
-            grade_color="green"
-          elif [ $quality_score -ge 70 ]; then
-            grade="B"
-            grade_color="yellowgreen"
-          elif [ $quality_score -ge 60 ]; then
-            grade="C"
-            grade_color="yellow"
-          else
-            grade="D"
-            grade_color="orange"
-          fi
-          
-          echo ""
-          echo "🎯 Code Quality Score: $quality_score/100 (Grade: $grade)"
-          
-          # Save outputs for next step
-          echo "total_repos=$total_repos" >> $GITHUB_OUTPUT
-          echo "active_repos=$active_repos" >> $GITHUB_OUTPUT
-          echo "total_stars=$total_stars" >> $GITHUB_OUTPUT
-          echo "total_forks=$total_forks" >> $GITHUB_OUTPUT
-          echo "total_issues=$total_issues" >> $GITHUB_OUTPUT
-          echo "total_size_mb=$total_size_mb" >> $GITHUB_OUTPUT
-          echo "quality_score=$quality_score" >> $GITHUB_OUTPUT
-          echo "grade=$grade" >> $GITHUB_OUTPUT
-          echo "grade_color=$grade_color" >> $GITHUB_OUTPUT
-          echo "lang_count=${#lang_count[@]}" >> $GITHUB_OUTPUT
-          
-          # Save detailed data to file for README update
-          cat > /tmp/repo-metrics.json << EOF
-          {
-            "total_repos": $total_repos,
-            "active_repos": $active_repos,
-            "archived_repos": $archived_repos,
-            "total_stars": $total_stars,
-            "total_forks": $total_forks,
-            "total_issues": $total_issues,
-            "total_size_mb": "$total_size_mb",
-            "quality_score": $quality_score,
-            "grade": "$grade",
-            "grade_color": "$grade_color",
-            "languages_count": ${#lang_count[@]},
-            "last_updated": "$(date -u +%Y-%m-%d)"
-          }
-          EOF
-          
-          cat /tmp/repo-metrics.json
+          set -euo pipefail
+          python3 scripts/analyze_github_profile.py midu16 \
+            --json-out /tmp/profile-report.json \
+            --markdown-out docs/repo-quality-report.md
 
-      - name: Update README with metrics
+          python3 <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(Path("/tmp/profile-report.json").read_text())
+          outputs = Path(os.environ["GITHUB_OUTPUT"])
+
+          def write(name, value):
+              with outputs.open("a", encoding="utf-8") as handle:
+                  handle.write(f"{name}={value}\n")
+
+          score = report["estimated_gitscore_repo_quality"]
+          if score >= 180:
+              grade, grade_color = "A", "brightgreen"
+          elif score >= 150:
+              grade, grade_color = "B", "yellowgreen"
+          elif score >= 120:
+              grade, grade_color = "C", "yellow"
+          elif score >= 90:
+              grade, grade_color = "D", "orange"
+          else:
+              grade, grade_color = "F", "red"
+
+          write("total_repos", report["total_repos"])
+          write("original_repos", report["original_repos"])
+          write("fork_repos", report["fork_repos"])
+          write("active_repos", report["active_original_repos_6mo"])
+          write("total_stars", report["total_stars"])
+          write("total_forks", report["total_forks_received"])
+          write("quality_score", score)
+          write("quality_max", report["estimated_gitscore_max"])
+          write("grade", grade)
+          write("grade_color", grade_color)
+          write("missing_license", report["originals_without_license"])
+          write("missing_topics", report["originals_without_topics"])
+          write("missing_description", report["originals_without_description"])
+          write("analyzed_at", report["analyzed_at"])
+          PY
+
+      - name: Update README metrics
         env:
           TOTAL_REPOS: ${{ steps.analyze.outputs.total_repos }}
+          ORIGINAL_REPOS: ${{ steps.analyze.outputs.original_repos }}
+          FORK_REPOS: ${{ steps.analyze.outputs.fork_repos }}
           ACTIVE_REPOS: ${{ steps.analyze.outputs.active_repos }}
           TOTAL_STARS: ${{ steps.analyze.outputs.total_stars }}
           TOTAL_FORKS: ${{ steps.analyze.outputs.total_forks }}
-          TOTAL_ISSUES: ${{ steps.analyze.outputs.total_issues }}
-          TOTAL_SIZE_MB: ${{ steps.analyze.outputs.total_size_mb }}
           QUALITY_SCORE: ${{ steps.analyze.outputs.quality_score }}
+          QUALITY_MAX: ${{ steps.analyze.outputs.quality_max }}
           GRADE: ${{ steps.analyze.outputs.grade }}
           GRADE_COLOR: ${{ steps.analyze.outputs.grade_color }}
-          LANG_COUNT: ${{ steps.analyze.outputs.lang_count }}
+          MISSING_LICENSE: ${{ steps.analyze.outputs.missing_license }}
+          MISSING_TOPICS: ${{ steps.analyze.outputs.missing_topics }}
+          MISSING_DESCRIPTION: ${{ steps.analyze.outputs.missing_description }}
+          ANALYZED_AT: ${{ steps.analyze.outputs.analyzed_at }}
         run: |
-          #!/bin/bash
-          set -e
-          
-          LAST_UPDATED=$(date -u +%Y-%m-%d)
-          
-          # Create the new metrics section
-          NEW_SECTION=$(cat << 'METRICS_EOF'
+          set -euo pipefail
+          LAST_UPDATED="${ANALYZED_AT}"
+
+          NEW_SECTION=$(cat <<METRICS_EOF
           ### 🔬 Code Quality Analysis
 
           <div align="center">
             <table>
               <tr>
                 <td align="center" colspan="2">
-                  <strong>Cross-Repository Quality Score</strong><br/>
-                  <sub>Aggregated across all public repositories</sub>
+                  <strong>GitScore Repository Quality (estimated)</strong><br/>
+                  <sub>All public repositories · see <a href="docs/repo-quality-playbook.md">playbook</a></sub>
                 </td>
               </tr>
               <tr>
                 <td align="center" width="50%">
-                  <img src="https://img.shields.io/badge/Score-QUALITY_SCORE%2F100-FF6B35?style=for-the-badge&labelColor=0D1117" alt="Quality Score" /><br/>
-                  <img src="https://img.shields.io/badge/Grade-GRADE-FF6B35?style=for-the-badge&labelColor=0D1117" alt="Grade" />
+                  <img src="https://img.shields.io/badge/Repository_Quality-QUALITY_SCORE%2FQUALITY_MAX-GRADE_COLOR?style=for-the-badge&labelColor=0D1117" alt="Repository quality score" /><br/>
+                  <img src="https://img.shields.io/badge/Grade-GRADE-GRADE_COLOR?style=for-the-badge&labelColor=0D1117" alt="Grade" />
                 </td>
                 <td align="center" width="50%">
                   <img src="https://github-readme-stats.vercel.app/api?username=midu16&show_icons=true&include_all_commits=true&count_private=true&hide=issues&custom_title=Code%20Metrics&theme=transparent&bg_color=0D111700&title_color=00D4FF&icon_color=7B61FF&text_color=C9D1D9&border_color=30363D&border_radius=10&hide_border=true" alt="Code metrics" />
@@ -255,39 +118,34 @@ jobs:
                 <th>Insight</th>
               </tr>
               <tr>
-                <td><strong>Total Repositories</strong></td>
-                <td><img src="https://img.shields.io/badge/Repos-TOTAL_REPOS-00D4FF?style=flat-square&labelColor=0D1117" alt="TOTAL_REPOS repositories" /></td>
-                <td>Public repositories analyzed</td>
+                <td><strong>Public repositories</strong></td>
+                <td><img src="https://img.shields.io/badge/Total-TOTAL_REPOS-00D4FF?style=flat-square&labelColor=0D1117" alt="TOTAL_REPOS repositories" /></td>
+                <td>ORIGINAL_REPOS original · FORK_REPOS forks</td>
               </tr>
               <tr>
-                <td><strong>Active Repositories</strong></td>
+                <td><strong>Active originals</strong></td>
                 <td><img src="https://img.shields.io/badge/Active-ACTIVE_REPOS-7B61FF?style=flat-square&labelColor=0D1117" alt="ACTIVE_REPOS active repositories" /></td>
                 <td>Updated in the last 6 months</td>
               </tr>
               <tr>
-                <td><strong>Total Stars</strong></td>
+                <td><strong>Stars received</strong></td>
                 <td><img src="https://img.shields.io/badge/Stars-TOTAL_STARS-C9D1D9?style=flat-square&labelColor=0D1117" alt="TOTAL_STARS stars" /></td>
                 <td>Community recognition</td>
               </tr>
               <tr>
-                <td><strong>Total Forks</strong></td>
+                <td><strong>Forks received</strong></td>
                 <td><img src="https://img.shields.io/badge/Forks-TOTAL_FORKS-30363D?style=flat-square&labelColor=0D1117" alt="TOTAL_FORKS forks" /></td>
-                <td>Downstream reuse</td>
+                <td>Downstream reuse on original repos</td>
               </tr>
               <tr>
-                <td><strong>Languages Used</strong></td>
-                <td><img src="https://img.shields.io/badge/Languages-LANG_COUNT-00D4FF?style=flat-square&labelColor=0D1117" alt="LANG_COUNT languages" /></td>
-                <td>Technology breadth</td>
-              </tr>
-              <tr>
-                <td><strong>Total Size</strong></td>
-                <td><img src="https://img.shields.io/badge/Size-TOTAL_SIZE_MB%20MB-30363D?style=flat-square&labelColor=0D1117" alt="TOTAL_SIZE_MB MB total size" /></td>
-                <td>Combined repository footprint</td>
+                <td><strong>Metadata gaps</strong></td>
+                <td><img src="https://img.shields.io/badge/License-MISSING_LICENSE-30363D?style=flat-square&labelColor=0D1117" alt="Missing license" /></td>
+                <td>MISSING_TOPICS without topics · MISSING_DESCRIPTION without description</td>
               </tr>
             </table>
-            
+
             <br/>
-            <sub>Last analyzed: LAST_UPDATED · Auto-generated by <a href="https://github.com/midu16/midu16/actions/workflows/repo-analysis.yml">GitHub Actions</a></sub>
+            <sub>Last analyzed: LAST_UPDATED · Auto-generated by <a href="https://github.com/midu16/midu16/actions/workflows/repo-analysis.yml">GitHub Actions</a> · <a href="docs/repo-quality-report.md">full report</a></sub>
           </div>
 
           <div align="center">
@@ -307,84 +165,65 @@ jobs:
 
           METRICS_EOF
           )
-          
-          # Replace placeholders with actual values
+
           NEW_SECTION="${NEW_SECTION//QUALITY_SCORE/$QUALITY_SCORE}"
+          NEW_SECTION="${NEW_SECTION//QUALITY_MAX/$QUALITY_MAX}"
           NEW_SECTION="${NEW_SECTION//GRADE_COLOR/$GRADE_COLOR}"
           NEW_SECTION="${NEW_SECTION//GRADE/$GRADE}"
           NEW_SECTION="${NEW_SECTION//TOTAL_REPOS/$TOTAL_REPOS}"
+          NEW_SECTION="${NEW_SECTION//ORIGINAL_REPOS/$ORIGINAL_REPOS}"
+          NEW_SECTION="${NEW_SECTION//FORK_REPOS/$FORK_REPOS}"
           NEW_SECTION="${NEW_SECTION//ACTIVE_REPOS/$ACTIVE_REPOS}"
           NEW_SECTION="${NEW_SECTION//TOTAL_STARS/$TOTAL_STARS}"
           NEW_SECTION="${NEW_SECTION//TOTAL_FORKS/$TOTAL_FORKS}"
-          NEW_SECTION="${NEW_SECTION//LANG_COUNT/$LANG_COUNT}"
-          NEW_SECTION="${NEW_SECTION//TOTAL_SIZE_MB/$TOTAL_SIZE_MB}"
+          NEW_SECTION="${NEW_SECTION//MISSING_LICENSE/$MISSING_LICENSE}"
+          NEW_SECTION="${NEW_SECTION//MISSING_TOPICS/$MISSING_TOPICS}"
+          NEW_SECTION="${NEW_SECTION//MISSING_DESCRIPTION/$MISSING_DESCRIPTION}"
           NEW_SECTION="${NEW_SECTION//LAST_UPDATED/$LAST_UPDATED}"
-          
-          # Save the new section to a temp file
-          echo "$NEW_SECTION" > /tmp/new-section.md
-          
-          # Use Python to update the README (more reliable for multi-line replacement)
-          python3 << 'PYTHON_EOF'
-          import re
-          
-          with open('README.md', 'r') as f:
-              content = f.read()
-          
-          with open('/tmp/new-section.md', 'r') as f:
-              new_section = f.read()
-          
-          # Pattern to match the Code Quality Analysis section
-          # From "### 🔬 Code Quality Analysis" to the next "###" or "---"
-          pattern = r'### 🔬 Code Quality Analysis.*?(?=\n### |\n---|\Z)'
-          
-          if re.search(pattern, content, re.DOTALL):
-              # Replace existing section
-              content = re.sub(pattern, new_section.strip(), content, flags=re.DOTALL)
-              print("✅ Updated existing Code Quality Analysis section")
-          else:
-              print("⚠️ Could not find Code Quality Analysis section to update")
-          
-          with open('README.md', 'w') as f:
-              f.write(content)
-          PYTHON_EOF
-          
-          echo "📝 README.md updated with latest metrics"
 
-      - name: Commit and push changes
+          echo "$NEW_SECTION" > /tmp/new-section.md
+
+          python3 <<'PYTHON_EOF'
+          import re
+          from pathlib import Path
+
+          content = Path("README.md").read_text(encoding="utf-8")
+          new_section = Path("/tmp/new-section.md").read_text(encoding="utf-8")
+          pattern = r"### 🔬 Code Quality Analysis.*?(?=\n### |\n---|\Z)"
+          if re.search(pattern, content, re.DOTALL):
+              content = re.sub(pattern, new_section.strip(), content, flags=re.DOTALL)
+          Path("README.md").write_text(content, encoding="utf-8")
+          PYTHON_EOF
+
+      - name: Commit analysis artifacts
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          git add README.md
-          
-          # Check if there are changes to commit
+          git add README.md docs/repo-quality-report.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "📊 Update code quality metrics [skip ci]"
+            git commit -m "📊 Update repository quality metrics [skip ci]"
             git push
-            echo "✅ Changes pushed to repository"
           fi
 
       - name: Generate workflow summary
         env:
-          TOTAL_REPOS: ${{ steps.analyze.outputs.total_repos }}
-          ACTIVE_REPOS: ${{ steps.analyze.outputs.active_repos }}
-          TOTAL_STARS: ${{ steps.analyze.outputs.total_stars }}
           QUALITY_SCORE: ${{ steps.analyze.outputs.quality_score }}
+          QUALITY_MAX: ${{ steps.analyze.outputs.quality_max }}
           GRADE: ${{ steps.analyze.outputs.grade }}
+          TOTAL_REPOS: ${{ steps.analyze.outputs.total_repos }}
+          MISSING_LICENSE: ${{ steps.analyze.outputs.missing_license }}
         run: |
-          cat >> $GITHUB_STEP_SUMMARY << EOF
-          ## 📊 Repository Analysis Complete
-          
+          cat >> "$GITHUB_STEP_SUMMARY" <<EOF
+          ## Repository analysis complete
+
           | Metric | Value |
           |--------|-------|
-          | Total Repositories | $TOTAL_REPOS |
-          | Active Repositories | $ACTIVE_REPOS |
-          | Total Stars | ⭐ $TOTAL_STARS |
-          | Quality Score | $QUALITY_SCORE/100 |
-          | Grade | **$GRADE** |
-          
-          ✅ README.md has been updated with the latest metrics!
-          EOF
+          | Public repositories | ${TOTAL_REPOS} |
+          | Estimated GitScore repository quality | ${QUALITY_SCORE}/${QUALITY_MAX} |
+          | Grade | **${GRADE}** |
+          | Original repos missing license | ${MISSING_LICENSE} |
 
+          See [docs/repo-quality-playbook.md](docs/repo-quality-playbook.md) for improvement steps.
+          EOF

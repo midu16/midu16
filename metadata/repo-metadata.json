@@ -1,0 +1,70 @@
+{
+  "repos": [
+    {
+      "name": "l1-cp",
+      "description": "OpenShift hub-and-spoke telco deployment lab with ACM, GitOps, and air-gapped mirroring workflows.",
+      "topics": [
+        "openshift",
+        "kubernetes",
+        "telco",
+        "5g",
+        "acm",
+        "gitops",
+        "ocp"
+      ]
+    },
+    {
+      "name": "prega-release-notes",
+      "description": "Generate OLM subset release notes from operator index images with optional GitHub PR correlation.",
+      "topics": [
+        "openshift",
+        "olm",
+        "operator-framework",
+        "release-notes",
+        "python",
+        "claude-code"
+      ]
+    },
+    {
+      "name": "lemonade",
+      "description": "Personal fork for Lemonade SDK contributions (local LLM server for GPU/NPU inference).",
+      "topics": [
+        "llm",
+        "local-server",
+        "rocm",
+        "vllm",
+        "cpp"
+      ]
+    },
+    {
+      "name": "ai-helpers",
+      "description": "Developer productivity tools for Claude Code and other AI assistants.",
+      "topics": [
+        "claude-code",
+        "developer-tools",
+        "python",
+        "ai"
+      ]
+    },
+    {
+      "name": "opm-troubleshooting",
+      "description": "Notes and scripts for troubleshooting Operator Lifecycle Manager (OLM) and opm workflows.",
+      "topics": [
+        "openshift",
+        "olm",
+        "operators",
+        "opm"
+      ]
+    },
+    {
+      "name": "odf-downtime-test",
+      "description": "OpenShift Data Foundation downtime and resilience test scenarios.",
+      "topics": [
+        "openshift",
+        "odf",
+        "storage",
+        "testing"
+      ]
+    }
+  ]
+}

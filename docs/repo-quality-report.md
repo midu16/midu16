@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-07-20.
+Generated for `midu16` on 2026-07-21.
 
 ## GitScore estimate
 
@@ -35,8 +35,8 @@ Generated for `midu16` on 2026-07-20.
 
 | Repository | Missing |
 |------------|---------|
-| node-exporter-monitoring | description, license, topics |
 | opm-troubleshooting | description, license, topics |
+| node-exporter-monitoring | description, license, topics |
 | index-arch-sorter | description, license, topics |
 | 04098694 | description, license, topics |
 | 04076665 | description, license, topics |

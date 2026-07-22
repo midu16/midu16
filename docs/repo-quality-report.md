@@ -1,18 +1,18 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-07-21.
+Generated for `midu16` on 2026-07-22.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 103/250
+- **Repository quality (estimated):** 105/250
 - **Public repositories:** 206 (90 original, 116 forks, 0 archived)
 - **Stars received:** 17
-- **Forks received on original repos:** 16
+- **Forks received on original repos:** 17
 - **Active original repos (6 months):** 18
 
 ## Metadata gaps on original repos
 
-- Missing license: 50
+- Missing license: 49
 - Missing topics: 83
 - Missing description: 28
 
@@ -21,9 +21,9 @@ Generated for `midu16` on 2026-07-21.
 | Repository | Stars | Forks | License | Topics |
 |------------|------:|------:|---------|--------|
 | [l1-cp](https://github.com/midu16/l1-cp) | 2 | 2 | none | none |
+| [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 1 | Apache-2.0 | none |
 | [must-gather-singleton](https://github.com/midu16/must-gather-singleton) | 1 | 1 | Apache-2.0 | none |
 | [srsLTE-ansible-playbook](https://github.com/midu16/srsLTE-ansible-playbook) | 1 | 1 | none | none |
-| [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 0 | none | none |
 | [prega-release-notes](https://github.com/midu16/prega-release-notes) | 1 | 0 | none | none |
 | [ollama-chain](https://github.com/midu16/ollama-chain) | 1 | 0 | MIT | none |
 | [f1c-communication](https://github.com/midu16/f1c-communication) | 1 | 0 | Apache-2.0 | none |
@@ -35,7 +35,6 @@ Generated for `midu16` on 2026-07-21.
 
 | Repository | Missing |
 |------------|---------|
-| opm-troubleshooting | description, license, topics |
 | node-exporter-monitoring | description, license, topics |
 | index-arch-sorter | description, license, topics |
 | 04098694 | description, license, topics |
@@ -47,6 +46,7 @@ Generated for `midu16` on 2026-07-21.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| opm-troubleshooting | description, topics |
 | midu16 | license, topics |
 | l1-cp | license, topics |
 | odf-downtime-test | license, topics |

@@ -1,13 +1,13 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-07-24.
+Generated for `midu16` on 2026-07-25.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 105/250
+- **Repository quality (estimated):** 107/250
 - **Public repositories:** 208 (90 original, 118 forks, 0 archived)
 - **Stars received:** 17
-- **Forks received on original repos:** 17
+- **Forks received on original repos:** 18
 - **Active original repos (6 months):** 18
 
 ## Metadata gaps on original repos
@@ -21,7 +21,7 @@ Generated for `midu16` on 2026-07-24.
 | Repository | Stars | Forks | License | Topics |
 |------------|------:|------:|---------|--------|
 | [l1-cp](https://github.com/midu16/l1-cp) | 2 | 2 | none | none |
-| [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 1 | Apache-2.0 | none |
+| [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 2 | Apache-2.0 | none |
 | [must-gather-singleton](https://github.com/midu16/must-gather-singleton) | 1 | 1 | Apache-2.0 | none |
 | [srsLTE-ansible-playbook](https://github.com/midu16/srsLTE-ansible-playbook) | 1 | 1 | none | none |
 | [prega-release-notes](https://github.com/midu16/prega-release-notes) | 1 | 0 | none | none |

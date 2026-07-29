@@ -1,20 +1,20 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-07-28.
+Generated for `midu16` on 2026-07-29.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 106/250
-- **Public repositories:** 208 (90 original, 118 forks, 0 archived)
+- **Repository quality (estimated):** 107/250
+- **Public repositories:** 209 (91 original, 118 forks, 0 archived)
 - **Stars received:** 17
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 17
+- **Active original repos (6 months):** 18
 
 ## Metadata gaps on original repos
 
 - Missing license: 49
-- Missing topics: 83
-- Missing description: 28
+- Missing topics: 84
+- Missing description: 29
 
 ## Top original repositories
 
@@ -46,6 +46,7 @@ Generated for `midu16` on 2026-07-28.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| ovs-pmd-exporter | description, topics |
 | midu16 | license, topics |
 | opm-troubleshooting | description, topics |
 | l1-cp | license, topics |
@@ -59,7 +60,6 @@ Generated for `midu16` on 2026-07-28.
 | sno-seed.5g-deployment.lab | license, topics |
 | ollama-chain | description, topics |
 | NetPerfTest | license, topics |
-| openclaw.ai | license, topics |
 
 ## Recommended actions
 

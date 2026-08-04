@@ -1,14 +1,14 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-08-03.
+Generated for `midu16` on 2026-08-04.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 107/250
+- **Repository quality (estimated):** 106/250
 - **Public repositories:** 210 (91 original, 119 forks, 0 archived)
 - **Stars received:** 17
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 18
+- **Active original repos (6 months):** 17
 
 ## Metadata gaps on original repos
 
@@ -46,8 +46,8 @@ Generated for `midu16` on 2026-08-03.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
-| opm-troubleshooting | description, topics |
 | midu16 | license, topics |
+| opm-troubleshooting | description, topics |
 | ovs-pmd-exporter | description, topics |
 | l1-cp | license, topics |
 | odf-downtime-test | license, topics |

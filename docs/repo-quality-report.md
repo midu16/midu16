@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-08-23.
+Generated for `midu16` on 2026-08-24.
 
 ## GitScore estimate
 
@@ -46,9 +46,9 @@ Generated for `midu16` on 2026-08-23.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| opm-troubleshooting | description, topics |
 | midu16 | license, topics |
 | sno.frntdeu1.pop.starlinkisp.net | license, topics |
-| opm-troubleshooting | description, topics |
 | ovs-pmd-exporter | description, topics |
 | l1-cp | license, topics |
 | odf-downtime-test | license, topics |

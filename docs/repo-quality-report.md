@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-09-20.
+Generated for `midu16` on 2026-09-21.
 
 ## GitScore estimate
 
@@ -8,7 +8,7 @@ Generated for `midu16` on 2026-09-20.
 - **Public repositories:** 211 (91 original, 120 forks, 0 archived)
 - **Stars received:** 17
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 16
+- **Active original repos (6 months):** 17
 
 ## Metadata gaps on original repos
 
@@ -24,8 +24,8 @@ Generated for `midu16` on 2026-09-20.
 | [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 2 | Apache-2.0 | none |
 | [must-gather-singleton](https://github.com/midu16/must-gather-singleton) | 1 | 1 | Apache-2.0 | none |
 | [srsLTE-ansible-playbook](https://github.com/midu16/srsLTE-ansible-playbook) | 1 | 1 | none | none |
-| [prega-release-notes](https://github.com/midu16/prega-release-notes) | 1 | 0 | none | none |
 | [ollama-chain](https://github.com/midu16/ollama-chain) | 1 | 0 | MIT | none |
+| [prega-release-notes](https://github.com/midu16/prega-release-notes) | 1 | 0 | none | none |
 | [f1c-communication](https://github.com/midu16/f1c-communication) | 1 | 0 | Apache-2.0 | none |
 | [csv-rander](https://github.com/midu16/csv-rander) | 1 | 0 | none | none |
 | [cka-ansible](https://github.com/midu16/cka-ansible) | 1 | 0 | Apache-2.0 | none |
@@ -46,8 +46,10 @@ Generated for `midu16` on 2026-09-20.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
-| midu16 | license, topics |
+| ollama-chain | description, topics |
 | opm-troubleshooting | description, topics |
+| rds_pod_spec | license, topics |
+| midu16 | license, topics |
 | l1-cp | license, topics |
 | sno.frntdeu1.pop.starlinkisp.net | license, topics |
 | ovs-pmd-exporter | description, topics |
@@ -58,8 +60,6 @@ Generated for `midu16` on 2026-09-20.
 | nodes-pods-adjust-resources-in-place | license, topics |
 | prega-release-notes | license, topics |
 | sno-seed.5g-deployment.lab | license, topics |
-| ollama-chain | description, topics |
-| NetPerfTest | license, topics |
 
 ## Recommended actions
 

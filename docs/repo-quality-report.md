@@ -1,19 +1,19 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-09-29.
+Generated for `midu16` on 2026-09-30.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 106/250
-- **Public repositories:** 211 (91 original, 120 forks, 0 archived)
+- **Repository quality (estimated):** 107/250
+- **Public repositories:** 212 (92 original, 120 forks, 0 archived)
 - **Stars received:** 17
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 17
+- **Active original repos (6 months):** 18
 
 ## Metadata gaps on original repos
 
-- Missing license: 49
-- Missing topics: 84
+- Missing license: 50
+- Missing topics: 85
 - Missing description: 29
 
 ## Top original repositories
@@ -46,6 +46,7 @@ Generated for `midu16` on 2026-09-29.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| prometheus-tsdb-gather | license, topics |
 | midu16 | license, topics |
 | opm-troubleshooting | description, topics |
 | midu16.github.io | description, license |
@@ -59,7 +60,6 @@ Generated for `midu16` on 2026-09-29.
 | weekly-planner-gui | license, topics |
 | nodes-pods-adjust-resources-in-place | license, topics |
 | prega-release-notes | license, topics |
-| sno-seed.5g-deployment.lab | license, topics |
 
 ## Recommended actions
 

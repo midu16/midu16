@@ -1,19 +1,19 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-10-11.
+Generated for `midu16` on 2026-10-12.
 
 ## GitScore estimate
 
-- **Repository quality (estimated):** 107/250
-- **Public repositories:** 212 (92 original, 120 forks, 0 archived)
-- **Stars received:** 17
+- **Repository quality (estimated):** 108/250
+- **Public repositories:** 213 (93 original, 120 forks, 0 archived)
+- **Stars received:** 18
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 18
+- **Active original repos (6 months):** 19
 
 ## Metadata gaps on original repos
 
-- Missing license: 50
-- Missing topics: 85
+- Missing license: 51
+- Missing topics: 86
 - Missing description: 29
 
 ## Top original repositories
@@ -24,12 +24,12 @@ Generated for `midu16` on 2026-10-11.
 | [opm-troubleshooting](https://github.com/midu16/opm-troubleshooting) | 1 | 2 | Apache-2.0 | none |
 | [must-gather-singleton](https://github.com/midu16/must-gather-singleton) | 1 | 1 | Apache-2.0 | none |
 | [srsLTE-ansible-playbook](https://github.com/midu16/srsLTE-ansible-playbook) | 1 | 1 | none | none |
+| [gomaxprocs-replicator](https://github.com/midu16/gomaxprocs-replicator) | 1 | 0 | none | none |
 | [ollama-chain](https://github.com/midu16/ollama-chain) | 1 | 0 | MIT | none |
 | [prega-release-notes](https://github.com/midu16/prega-release-notes) | 1 | 0 | none | none |
 | [f1c-communication](https://github.com/midu16/f1c-communication) | 1 | 0 | Apache-2.0 | none |
 | [csv-rander](https://github.com/midu16/csv-rander) | 1 | 0 | none | none |
 | [cka-ansible](https://github.com/midu16/cka-ansible) | 1 | 0 | Apache-2.0 | none |
-| [prometheus-compose](https://github.com/midu16/prometheus-compose) | 1 | 0 | none | none |
 
 ## Highest-impact fixes
 
@@ -46,6 +46,7 @@ Generated for `midu16` on 2026-10-11.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| gomaxprocs-replicator | license, topics |
 | midu16 | license, topics |
 | prometheus-tsdb-gather | license, topics |
 | opm-troubleshooting | description, topics |
@@ -59,7 +60,6 @@ Generated for `midu16` on 2026-10-11.
 | dns.5g-deployment.lab | license, topics |
 | weekly-planner-gui | license, topics |
 | nodes-pods-adjust-resources-in-place | license, topics |
-| prega-release-notes | license, topics |
 
 ## Recommended actions
 

@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-10-13.
+Generated for `midu16` on 2026-10-14.
 
 ## GitScore estimate
 
@@ -47,8 +47,8 @@ Generated for `midu16` on 2026-10-13.
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
 | prometheus-tsdb-gather | license, topics |
-| opm-troubleshooting | description, topics |
 | midu16 | license, topics |
+| opm-troubleshooting | description, topics |
 | gomaxprocs-replicator | license, topics |
 | midu16.github.io | description, license |
 | sno.frntdeu1.pop.starlinkisp.net | license, topics |

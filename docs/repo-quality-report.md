@@ -1,20 +1,20 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-10-14.
+Generated for `midu16` on 2026-10-15.
 
 ## GitScore estimate
 
 - **Repository quality (estimated):** 108/250
-- **Public repositories:** 214 (93 original, 121 forks, 0 archived)
+- **Public repositories:** 215 (94 original, 121 forks, 0 archived)
 - **Stars received:** 18
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 19
+- **Active original repos (6 months):** 20
 
 ## Metadata gaps on original repos
 
-- Missing license: 51
-- Missing topics: 86
-- Missing description: 29
+- Missing license: 52
+- Missing topics: 87
+- Missing description: 30
 
 ## Top original repositories
 
@@ -35,6 +35,7 @@ Generated for `midu16` on 2026-10-14.
 
 | Repository | Missing |
 |------------|---------|
+| turbostat | description, license, topics |
 | node-exporter-monitoring | description, license, topics |
 | index-arch-sorter | description, license, topics |
 | 04098694 | description, license, topics |
@@ -46,8 +47,8 @@ Generated for `midu16` on 2026-10-14.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
-| prometheus-tsdb-gather | license, topics |
 | midu16 | license, topics |
+| prometheus-tsdb-gather | license, topics |
 | opm-troubleshooting | description, topics |
 | gomaxprocs-replicator | license, topics |
 | midu16.github.io | description, license |
@@ -59,7 +60,6 @@ Generated for `midu16` on 2026-10-14.
 | odf-downtime-test | license, topics |
 | dns.5g-deployment.lab | license, topics |
 | weekly-planner-gui | license, topics |
-| nodes-pods-adjust-resources-in-place | license, topics |
 
 ## Recommended actions
 

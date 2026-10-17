@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-10-16.
+Generated for `midu16` on 2026-10-17.
 
 ## GitScore estimate
 
@@ -47,8 +47,8 @@ Generated for `midu16` on 2026-10-16.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
-| midu16 | license, topics |
 | prometheus-tsdb-gather | license, topics |
+| midu16 | license, topics |
 | opm-troubleshooting | description, topics |
 | gomaxprocs-replicator | license, topics |
 | midu16.github.io | description, license |

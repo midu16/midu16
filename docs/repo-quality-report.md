@@ -1,19 +1,19 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-11-02.
+Generated for `midu16` on 2026-11-03.
 
 ## GitScore estimate
 
 - **Repository quality (estimated):** 108/250
-- **Public repositories:** 218 (95 original, 123 forks, 0 archived)
+- **Public repositories:** 219 (96 original, 123 forks, 0 archived)
 - **Stars received:** 18
 - **Forks received on original repos:** 18
-- **Active original repos (6 months):** 20
+- **Active original repos (6 months):** 21
 
 ## Metadata gaps on original repos
 
-- Missing license: 53
-- Missing topics: 88
+- Missing license: 54
+- Missing topics: 89
 - Missing description: 30
 
 ## Top original repositories
@@ -47,6 +47,7 @@ Generated for `midu16` on 2026-11-02.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
+| oc-mirror-cgu | license, topics |
 | midu16 | license, topics |
 | telco-upf-gen | license, topics |
 | prometheus-tsdb-gather | license, topics |
@@ -59,7 +60,6 @@ Generated for `midu16` on 2026-11-02.
 | l1-cp | license, topics |
 | ovs-pmd-exporter | description, topics |
 | odf-downtime-test | license, topics |
-| dns.5g-deployment.lab | license, topics |
 
 ## Recommended actions
 

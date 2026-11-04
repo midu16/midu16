@@ -1,6 +1,6 @@
 # Repository quality report
 
-Generated for `midu16` on 2026-11-03.
+Generated for `midu16` on 2026-11-04.
 
 ## GitScore estimate
 
@@ -47,8 +47,8 @@ Generated for `midu16` on 2026-11-03.
 | icinga2-docker | description, license, topics |
 | api | description, license, topics |
 | RaspberryPiv3 | description, license, topics |
-| oc-mirror-cgu | license, topics |
 | midu16 | license, topics |
+| oc-mirror-cgu | license, topics |
 | telco-upf-gen | license, topics |
 | prometheus-tsdb-gather | license, topics |
 | opm-troubleshooting | description, topics |

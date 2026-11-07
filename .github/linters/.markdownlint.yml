@@ -1,0 +1,7 @@
+# Profile README uses centered HTML blocks for badges and images:
+#   MD013 - long lines are badge/card URLs, cannot wrap
+#   MD033 - inline HTML is required for badges, tables and centering
+#   MD041 - the hero banner <div> precedes the first markdown heading
+MD013: false
+MD033: false
+MD041: false

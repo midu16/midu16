@@ -61,7 +61,7 @@ jobs:
               if [[ "$url" == *"$pattern"* ]]; then
                 echo "⏭️  SKIP: $url (requires authentication or blocks bots)"
                 skip=true
-                skipped=$((skipped + 1))
+                skipped=$((skipped+1))
                 break
               fi
             done
@@ -74,21 +74,21 @@ jobs:
             # Use -f to fail on HTTP errors (4xx, 5xx)
             # Use -s for silent mode, -o /dev/null to discard output
             # Use -w to get HTTP status code
-            http_code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 30 \
+            http_code=$(curl -s -o /dev/null -w "%{http_code}" -L --retry 2 --max-time 30 \
               -H "User-Agent: Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com)" \
               "$url" 2>/dev/null || echo "000")
             
             if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 400 ]; then
               echo "✅ OK ($http_code): $url"
-              succeeded=$((succeeded + 1))
+              succeeded=$((succeeded+1))
             elif [ "$http_code" = "000" ]; then
               echo "❌ FAIL (timeout/connection error): $url"
               failed_urls="$failed_urls\n  - $url (connection error)"
-              failed=$((failed + 1))
+              failed=$((failed+1))
             else
               echo "❌ FAIL ($http_code): $url"
               failed_urls="$failed_urls\n  - $url (HTTP $http_code)"
-              failed=$((failed + 1))
+              failed=$((failed+1))
             fi
           done
           
